@@ -3,6 +3,8 @@ using Ambev.DeveloperEvaluation.Common.HealthChecks;
 using Ambev.DeveloperEvaluation.Common.Logging;
 using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.Domain.Common.Interfaces;
+using Ambev.DeveloperEvaluation.Events.Events;
 using Ambev.DeveloperEvaluation.IoC;
 using Ambev.DeveloperEvaluation.ORM;
 using Ambev.DeveloperEvaluation.WebApi.Middleware;
@@ -25,7 +27,7 @@ public class Program
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-
+            builder.Services.AddScoped<IEventPublisher, ConsoleEventPublisher>();
             builder.AddBasicHealthChecks();
             builder.Services.AddSwaggerGen();
 
